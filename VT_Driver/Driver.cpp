@@ -33,13 +33,14 @@ VOID Unload(PDRIVER_OBJECT DriverObject)
 EXTERN_C
 NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING RegistryPath)
 {
+	DbgBreakPoint();
     UNREFERENCED_PARAMETER(DriverObject);
     UNREFERENCED_PARAMETER(RegistryPath);
 
     DriverObject->DriverUnload = Unload;
     KdPrint(("DriverEntry!!!\n"));
     
-
+    //LogInfo("Allocation successful");
     NTSTATUS nStatus = STATUS_SUCCESS;
 
     if (InitNtoskrnlSymbolsTable())
@@ -57,7 +58,7 @@ NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING Regi
         // If it fails turn off vmx and deallocate all structures
         // 初始化 并安装vt
         //
-
+       
         hv::InitGlobalVariables();
         if (vmm_init() == false)
         {

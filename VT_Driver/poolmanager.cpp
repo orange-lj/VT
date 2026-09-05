@@ -85,7 +85,7 @@ namespace pool_manager
 
         if (g_vmm_context.pool_manager->is_request_for_allocation_recived == false)
         {
-            LogInfo("No pending allocations");
+            //LogInfo("No pending allocations");
             return status;
         }
 
@@ -110,7 +110,7 @@ namespace pool_manager
                 g_vmm_context.pool_manager->allocation_requests->count[i] = 0;
                 g_vmm_context.pool_manager->allocation_requests->intention[i] = INTENTION_NONE;
 
-                LogInfo("Allocation successful");
+                ////LogInfo("Allocation successful");
             }
         }
 

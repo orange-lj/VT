@@ -339,7 +339,7 @@ void init_logical_processor2(unsigned int iter)
 	//创建host的idt和gdt
 	hv::prepare_external_structures(vcpu);
 	vcpu->vcpu_status.vmx_on = true;
-	LogInfo("vcpu %d is now in VMX operation.\n", processor_number);
+	//LogInfo("vcpu %d is now in VMX operation.\n", processor_number);
 
 	//配置vmcs区域
 	fill_vmcs(vcpu, 0);

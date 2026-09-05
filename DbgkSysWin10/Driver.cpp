@@ -63,7 +63,7 @@ NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING Registry
     UNREFERENCED_PARAMETER(RegistryPath);
     LogFile::InitDriverLog();    
 
-    //DbgBreakPoint();
+    DbgBreakPoint();
     //ApcCreateRemoteThread((HANDLE)7572, NULL);
     DbgPrint("血浮屠驱动载入成功!!!\n");
 

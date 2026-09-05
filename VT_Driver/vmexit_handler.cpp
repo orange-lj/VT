@@ -487,7 +487,7 @@ unsigned __int32 handler_breakpoint(__ept_state& ept_state, __vmexit_interrupt_i
 		//仅比较页帧号
 		if (hooked_page_info->pfn_of_hooked_page == GET_PFN(physical_address))
 		{
-			//LogInfo("页面已挂钩");
+			////LogInfo("页面已挂钩");
 
 			//检查虚拟地址是否已经挂钩
 			PLIST_ENTRY current_hooked_function = &hooked_page_info->hooked_functions_list;
@@ -532,7 +532,7 @@ unsigned __int32 handler_debug(__ept_state& ept_state, __vmexit_interrupt_info i
 		//仅比较页帧号
 		if (hooked_page_info->pfn_of_hooked_page == GET_PFN(physical_address))
 		{
-			//LogInfo("页面已挂钩");
+			////LogInfo("页面已挂钩");
 
 			//检查虚拟地址是否已经挂钩
 			PLIST_ENTRY current_hooked_function = &hooked_page_info->hooked_functions_list;

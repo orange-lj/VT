@@ -156,8 +156,8 @@ namespace LogFile
         RtlTimeToTimeFields(&systemTime, &timeFields);
 
         // 格式化带有日期的日志信息为XML格式
-        RtlStringCchPrintfA(logMessage,
-            sizeof(logMessage),
+        status = RtlStringCchPrintfA(logMessage,
+            RTL_NUMBER_OF(logMessage),
             "<LogEntry Date=\"%04u-%02u-%02u\" Time=\"%02u:%02u:%02u.%03u\">%s</LogEntry>\n",
             timeFields.Year,
             timeFields.Month,
@@ -168,6 +168,10 @@ namespace LogFile
             timeFields.Milliseconds,
             message);
 
+        if (!NT_SUCCESS(status))
+        {
+            return status;
+        }
         // 写入日志信息到XML文件
         status = WriteLogToXmlFileA(logMessage);
         if (!NT_SUCCESS(status))

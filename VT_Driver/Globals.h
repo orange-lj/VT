@@ -883,7 +883,7 @@ struct __vcpu
 
     alignas(0x1000) vmx_msr_bitmap msr_bitmap;
 
-    // the number of NMIs（不可屏蔽中断） that need to be 送达/交付
+    // the number of NMIs that need to be delivered
     uint32_t volatile queued_nmis;
 
     // current preemption timer

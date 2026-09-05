@@ -342,6 +342,9 @@
     <Link>
       <AdditionalDependencies>$(SolutionDir)Common\Ring0\SymbolicAccessKM.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <DriverSign>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
+    </DriverSign>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Win7 Debug|x64'">
     <ClCompile>

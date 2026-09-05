@@ -35,7 +35,7 @@ namespace ept
 		//
 		// 内存类型范围寄存器 (MTRR) 提供了一种关联物理内存类型的机制
 		// 用于指定物理内存的缓存类型，提升CPU性能。
-		//IA32_MTRRCAP用来告诉这个 CPU 支持多少个 MTRR 寄存器？支持哪些 MTRR 功能
+
 		mtrr_cap.all = __readmsr(IA32_MTRRCAP);
 
 		//对于没有被MTRR寄存器涵盖的物理内存区域，使用IA32_MTRR_DEF_TYPE寄存器来指定其默认属性
@@ -54,7 +54,6 @@ namespace ept
 		//判断处理器是否支持smrr
 		if (mtrr_cap.smrr_support == true)
 		{
-			//定义 SMM 专用的受保护物理内存范围，安全相关 MSR，在 Hypervisor 中需要特别处理
 			current_phys_base.all = __readmsr(IA32_SMRR_PHYSBASE);
 			current_phys_mask.all = __readmsr(IA32_SMRR_PHYSMASK);
 
@@ -865,7 +864,7 @@ namespace ept
 			//仅比较页帧号
 			if (hooked_page_info->pfn_of_hooked_page == GET_PFN(physical_address))
 			{
-				//LogInfo("页面已挂钩");
+				////LogInfo("页面已挂钩");
 
 				//检查虚拟地址是否已经挂钩
 				PLIST_ENTRY current_hooked_function = &hooked_page_info->hooked_functions_list;
@@ -922,7 +921,7 @@ namespace ept
 			{
 				if (hooked_page_info->Options == EPTO_HOOK_FUNCTION)
 				{
-					LogInfo("页面已挂钩");
+					//LogInfo("页面已挂钩");
 
 					__ept_hooked_function_info* hooked_function_info = pool_manager::request_pool<__ept_hooked_function_info*>(pool_manager::INTENTION_TRACK_HOOKED_FUNCTIONS, TRUE, sizeof(__ept_hooked_function_info));
 					if (hooked_function_info == nullptr)
@@ -1134,7 +1133,7 @@ namespace ept
 			{
 				if (hooked_page_info->Options == EPTO_VIRTUAL_BREAKPOINT)
 				{
-					LogInfo("页面已挂钩");
+					//LogInfo("页面已挂钩");
 
 					int offset = tmp_vmcallinfo.VirtualAddress & 0xFFF;
 					memcpy(&tmp_vmcallinfo.buffer[0], &hooked_page_info->fake_page_contents[offset], tmp_vmcallinfo.Size);
@@ -1195,7 +1194,7 @@ namespace ept
 			{
 				if (hooked_page_info->Options == EPTO_VIRTUAL_BREAKPOINT)
 				{
-					LogInfo("页面已挂钩");
+					//LogInfo("页面已挂钩");
 
 					//写入cc断点
 					int offset = vmcallinfo.VirtualAddress & 0xFFF;
@@ -1399,7 +1398,7 @@ namespace ept
 			//仅比较页帧号
 			if (hooked_page_info->pfn_of_hooked_page == GET_PFN(physical_address))
 			{
-				LogInfo("页面已挂钩");
+				//LogInfo("页面已挂钩");
 
 				__ept_hooked_function_info* hooked_function_info = pool_manager::request_pool<__ept_hooked_function_info*>(pool_manager::INTENTION_TRACK_HOOKED_FUNCTIONS, TRUE, sizeof(__ept_hooked_function_info));
 				if (hooked_function_info == nullptr)
@@ -1583,7 +1582,7 @@ namespace ept
 			//仅比较页帧号
 			if (hooked_page_info->pfn_of_hooked_page == GET_PFN(physical_address))
 			{
-				LogInfo("页面已挂钩");
+				//LogInfo("页面已挂钩");
 
 				__ept_hooked_function_info* hooked_function_info = pool_manager::request_pool<__ept_hooked_function_info*>(pool_manager::INTENTION_TRACK_HOOKED_FUNCTIONS, TRUE, sizeof(__ept_hooked_function_info));
 				if (hooked_function_info == nullptr)
@@ -1774,7 +1773,7 @@ namespace ept
 			//仅比较页帧号
 			if (hooked_page_info->pfn_of_hooked_page == GET_PFN(physical_address))
 			{
-				LogInfo("页面已挂钩");
+				//LogInfo("页面已挂钩");
 
 				__ept_hooked_function_info* hooked_function_info = pool_manager::request_pool<__ept_hooked_function_info*>(pool_manager::INTENTION_TRACK_HOOKED_FUNCTIONS, TRUE, sizeof(__ept_hooked_function_info));
 				if (hooked_function_info == nullptr)
@@ -2088,7 +2087,7 @@ namespace ept
 			{
 				if (hooked_page_info->Options == EPTO_VIRTUAL_BREAKPOINT)
 				{
-					LogInfo("页面已挂钩");
+					//LogInfo("页面已挂钩");
 
 					set_ept_watch(hooked_page_info, Type);
 
